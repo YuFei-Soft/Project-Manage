@@ -7,7 +7,7 @@ public class Test9 {
 				int  week=days/7;
 				int  lestDay=days%7;
 				System.out.println("week="+week);
-				System.out.println("lestDay="+lestDay);
+				System.out.println("lestDay="+lestDay);//≤‚ ‘
 
 	}
 
