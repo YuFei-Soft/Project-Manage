@@ -11,7 +11,7 @@ public class Account1 {
 	}
 
 	public void putMoney(double some) {// 取钱
-		if (money < some) {
+		if (money < some) {//判断是否大于money
 			System.out.println("余额不足，不能取款!!!");
 		} else {
 			money -= some;
