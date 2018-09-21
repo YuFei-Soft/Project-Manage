@@ -24,11 +24,12 @@ public class CusBiz {
 
 	public void show() {
 		for(String name:names){
-			System.out.println();
+			if(name==null){
+				break;
+			}
+			System.out.println(name);
 		}
 	}
-
-		
 	
 	public static void main(String[] args) {
 		CusBiz d = new CusBiz();
@@ -39,6 +40,7 @@ public class CusBiz {
 		System.out.println("¼ÌÐøÂð£¿£¨y/n£©");
 		String  ad=input.next();
 		if("n".equals(ad)){
+			
 			break;
 		}
 		
