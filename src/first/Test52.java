@@ -15,7 +15,7 @@ public class Test52 {
 			for (int c = 0; c < 2 * i - 1; c++) {
 				if (c == 0 || c == 2 * i - 2) {
 					System.out.print("*");
-				} else {
+				} else{
 					System.out.print(" ");
 				}
 			}
