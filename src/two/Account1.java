@@ -3,7 +3,7 @@ package two;
 import java.util.Scanner;
 
 public class Account1 {
-	double money;
+	double money;//
 
 	public void getMoney(double money1) {// ¥Ê«Æ
 		money += money1;
