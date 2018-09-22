@@ -35,17 +35,17 @@ public class Dog {
 		System.out.println("请输入宠物姓名");
 		String name = input.next();
 		System.out.println("请选择类型：1狗 ，2企鹅");
-		int sum=input.nextInt();
-		switch(sum){
+		int sum = input.nextInt();
+		switch (sum) {
 		case 1:
 			System.out.println("请输入狗的品种");
-			String strain=input.next();
-			Dog dog=new Dog();
-			dog.name=name;
-			dog.strain=strain;
+			String strain = input.next();
+			Dog dog = new Dog();
+			dog.name = name;
+			dog.strain = strain;
 			dog.show();
 			break;
-			
+
 		}
 
 	}
