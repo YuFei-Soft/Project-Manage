@@ -14,7 +14,7 @@ public class Test35 { // 求输入数的最大值和最小值，数输0结束。
 			c++;
 			System.out.println("请输入一个整数（输入0结束）");
 			a = input.nextInt();
-			if(a==0){
+			if (a == 0) {
 				break;
 			}
 			if (c == 1) {
@@ -29,12 +29,11 @@ public class Test35 { // 求输入数的最大值和最小值，数输0结束。
 				min = a;
 			}
 		} while (a != 0);
-		if(a==0&&c==1){
+		if (a == 0 && c == 1) {
 			System.out.println("程序结束，无最大，无最小。");
-		}else{
+		} else {
 			System.out.println("最大值" + max + "最小值" + min);
 		}
-		
 
 	}
 

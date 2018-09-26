@@ -20,11 +20,12 @@ public class TestMethod {
 		}
 		return sum;
 	}
+
 	public static void main(String[] args) {
-		
+
 		int q = get3();
 		System.out.print(q);
-		
+
 		int w = get4();
 		System.out.print(w);
 	}

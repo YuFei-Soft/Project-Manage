@@ -1,6 +1,6 @@
 package two;
 
-public class Dog3 {
+public class Dog3 {// 计算循环的次数!!!!
 	static int sum;
 
 	public Dog3() {

@@ -8,7 +8,7 @@ public class Test43 {
 		System.out.println("请输入会员本月的消费记录");
 		double[] a = new double[5];
 		Scanner input = new Scanner(System.in);
-		double sum = 0;                   //总金额
+		double sum = 0; // 总金额
 		for (int x = 0; x < a.length; x++) {
 			System.out.println("请输入第" + (x + 1) + "笔购物金额：");
 			a[x] = input.nextDouble();

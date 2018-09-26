@@ -9,7 +9,7 @@ public class test2 {
 		System.out.println("\t\t2.退出\t\n");
 		System.out.println("* * * * * * * * * * * * * * * * * * * * * * \t\n");
 		System.out.println("请选择，输入数字：");
-		
+
 	}
 
 }
