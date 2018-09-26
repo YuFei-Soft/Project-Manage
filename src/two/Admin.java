@@ -17,6 +17,6 @@ public class Admin {
 		admin2.name = "admin2";
 		admin2.mun = "222222";
 		admin2.showNan();
-		
+
 	}
 }

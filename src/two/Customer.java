@@ -14,9 +14,9 @@ public class Customer {
 	}
 
 	public static void main(String[] args) {
-		Customer   a=new Customer();
-		a.scores=200;
-		a.type="½ð¿¨";
+		Customer a = new Customer();
+		a.scores = 200;
+		a.type = "½ð¿¨";
 		a.show();
 	}
 }

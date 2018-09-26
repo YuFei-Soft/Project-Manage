@@ -19,14 +19,14 @@ public class Tese22 {
 			System.out.println("3.真情回馈");
 			System.out.println("4.注销");
 			System.out.print("请选择:");
-			int b=input.nextInt();
+			int b = input.nextInt();
 			if (b == 1) {
 				System.out.println("1.显示所有客户信息");
 				System.out.println("2.添加客户信息");
 				System.out.println("3.修改客户信息");
 				System.out.println("4.查询客户信息");
 			}
-			if (b== 3) {
+			if (b == 3) {
 				System.out.println("1.幸运大放送");
 				System.out.println("2.幸运抽奖");
 				System.out.println("3.生日问候");

@@ -11,8 +11,8 @@ public class Test21 {
 		// String f="123456";
 		if (a.equals("admin")) {
 			System.out.print("ÇëÊäÈëÃÜÂë:    ");
-	
-			String f = input.next();		
+
+			String f = input.next();
 			if (f.equals("123456")) {
 				System.out.print("µÇÂ½³É¹¦");
 			} else {

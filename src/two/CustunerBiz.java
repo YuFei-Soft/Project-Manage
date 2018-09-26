@@ -1,4 +1,4 @@
-	package two;
+package two;
 
 public class CustunerBiz {
 	Custuner[] peo = new Custuner[5];
@@ -28,7 +28,7 @@ public class CustunerBiz {
 	}
 
 	public static void main(String[] args) {
-		CustunerBiz  a=new CustunerBiz();
-		
+		CustunerBiz a = new CustunerBiz();
+
 	}
 }

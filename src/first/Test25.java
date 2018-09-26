@@ -20,9 +20,9 @@ public class Test25 {
 		while (temp.equals("y")) {
 			System.out.print("请输入商品的编号:");
 			int a = input.nextInt();
-			while(a>3){
+			while (a > 3) {
 				System.out.println("请重新输入商品编号：");
-				a=input.nextInt();
+				a = input.nextInt();
 			}
 			System.out.print("请输入商品的数量:");
 			int b = input.nextInt();

@@ -20,7 +20,7 @@ public class Test44 {
 				index = i;
 				break;
 			}
-		}//向后移动一位 
+		}// 向后移动一位
 		for (int c = a.length - 1; c > index; c--) {
 			a[c] = a[c - 1];
 		}

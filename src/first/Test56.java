@@ -78,7 +78,7 @@ public class Test56 {
 					// 不含运费的餐费
 					double dishPrice = dishPrices[tempIndex - 1] * dishNum;
 					// 运费
-					double otherPrice = dishPrice >= 50?0:5;
+					double otherPrice = dishPrice >= 50 ? 0 : 5;
 					// 总费用
 					sumPrices[index] = dishPrice + otherPrice;
 					// 设置餐品的名称及份数

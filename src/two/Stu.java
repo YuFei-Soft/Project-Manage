@@ -32,14 +32,23 @@ public class Stu {
 	}
 
 	@Override
+	// 注解说明下面的方法就是方法重写
+	// 方法重写有四个规则，首先看方法的名称和参数是否一致
+	// 如果一直就确定是方法的重写，不一致就认为没有构成方法重写，就不需要满足
+	// 方法重写的规则
 	public boolean equals(Object obj) {
 		Stu a = (Stu) obj;
-		if (a.getName().equals(this.name) && a.id == this.id) {
+		if (a.getName().equals(this.getName()) && a.getId() == this.getId()) {
 			return true;
 		} else {
 			return false;
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return "Stu [name=" + name + ", id=" + id + "]";
 	}
 
 }

@@ -23,12 +23,13 @@ public class TestStuPeo {
 		System.out.println("请输入查找的学生姓名：");
 		String name = input.next();
 		System.out.println("***查找结果***");
-		boolean flag=ad.getName(start, end, name);//用boolean 的类型返回只能false或者true  
-		if(flag){                                  //  默认的是true 所以就直接判断flag就行
+		boolean flag = ad.getName(start, end, name);// 用boolean
+													// 的类型返回只能false或者true
+		if (flag) { // 默认的是true 所以就直接判断flag就行
 			System.out.println("找到了");
-		}else{
+		} else {
 			System.out.println("没找到！！！");
 		}
-		
+
 	}
 }

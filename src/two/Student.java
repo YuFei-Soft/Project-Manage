@@ -95,21 +95,17 @@ public class Student {
 	}
 
 	public static void main(String[] args) {
-		/*Scanner input = new Scanner(System.in);
-		System.out.println("请输入姓名：");
-		String a = input.next();
-		System.out.println("请输入年龄：");
-		int b = input.nextInt();
-		System.out.println("请输入班级：");
-		String c = input.next();
-		System.out.println("请输入性别：");
-		String d = input.next();
-		System.out.println("请输入学号：");
-		String e = input.next();*/
-		Student student = new Student("aa",12,"sss","hdhd","1223");
-		Student student1=new Student("aa",12,"sss","hdhd","1223");
+		/*
+		 * Scanner input = new Scanner(System.in); System.out.println("请输入姓名：");
+		 * String a = input.next(); System.out.println("请输入年龄："); int b =
+		 * input.nextInt(); System.out.println("请输入班级："); String c =
+		 * input.next(); System.out.println("请输入性别："); String d = input.next();
+		 * System.out.println("请输入学号："); String e = input.next();
+		 */
+		Student student = new Student("aa", 12, "sss", "hdhd", "1223");
+		Student student1 = new Student("aa", 12, "sss", "hdhd", "1223");
 		// student.Show(student);
-		
+
 		System.out.println(student1.equals(student));
 
 	}

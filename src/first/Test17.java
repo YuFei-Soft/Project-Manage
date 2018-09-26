@@ -11,7 +11,7 @@ public class Test17 {
 		System.out.println("请输入4位会员卡号:   ");
 		Scanner input = new Scanner(System.in);
 		int a = input.nextInt();
-		//input.close();
+		// input.close();
 		System.out.println("4位会员卡号位:    " + a);
 		int baiwei = a / 100 % 10;
 		System.out.println("百位数为:   " + baiwei);
