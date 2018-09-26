@@ -33,7 +33,7 @@ public  abstract class Moto {
 		this.brand = brand;
 	}
 
-  public abstract int  calcRent(int days);
+  public abstract int  calcRent(int days);//º∆À„∑Ω∑®
 	  
   
 }

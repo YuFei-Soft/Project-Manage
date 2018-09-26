@@ -16,7 +16,7 @@ public class Bus extends Moto {
 	}
 
 	public void setSeatCount(int seatCount) {
-		seatCount = seatCount;
+		this.seatCount = seatCount;
 	}
 
 	@Override

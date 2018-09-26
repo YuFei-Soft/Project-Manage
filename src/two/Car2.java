@@ -22,9 +22,9 @@ public class Car2 extends Moto {
 
 	@Override
 	public int calcRent(int days) {
-		if (type.equals("商务GL8 ")) {
+		if ("商务GL8".equals(type)) {
 			return 600 * days;
-		} else if (type.equals("宝马550i")) {
+		} else if ("宝马550i".equals(type)) {
 			return 500 * days;
 		} else {
 			return 300 * days;
