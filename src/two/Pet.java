@@ -33,4 +33,5 @@ public  abstract class Pet {
 			this.love = love;
 			this.health = health;
 		}
+		
 }

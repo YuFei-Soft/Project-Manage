@@ -8,6 +8,9 @@ public class Student {
 	private String grade;// 班级
 	private String sex;// 性别
 	private String card;// 学号
+	public Student(){
+		
+	}
 
 	public String getName() {
 		return name;
