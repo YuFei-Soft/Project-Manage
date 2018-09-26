@@ -9,6 +9,10 @@ public  abstract class Moto {
 		this.no = no;
 		this.brand = brand;
 	}
+	public Moto(String no){
+		super();
+		this.no=no;
+	}
 	public Moto() {
 
 	}

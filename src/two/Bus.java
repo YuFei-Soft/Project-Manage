@@ -1,27 +1,27 @@
 package two;
 
 public class Bus extends Moto {
-	private int SeatCount;
+	private int seatCount;
 
-	public Bus(String no, String barnd, int SeatCount) {
+	public Bus(String no, String barnd, int seatCount) {
 		super(no, barnd);
-		this.SeatCount = SeatCount;
+		this.seatCount = seatCount;
 	}
 	public Bus(){
 		
 	}
 
 	public int getSeatCount() {
-		return SeatCount;
+		return seatCount;
 	}
 
 	public void setSeatCount(int seatCount) {
-		SeatCount = seatCount;
+		seatCount = seatCount;
 	}
 
 	@Override
 	public int calcRent(int days) {
-		if (SeatCount <= 16) {
+		if (seatCount <= 16) {
 			return 800 * days;
 		} else {
 			return 1500 * days;
