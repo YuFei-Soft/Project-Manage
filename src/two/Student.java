@@ -57,6 +57,8 @@ public class Student {
 		this.card = card;
 	}
 
+	public void show(){};
+	
 	public void Show(Student student) {
 		System.out.println("姓名：" + student.getName() + "年龄" + student.getAge()
 				+ "班级" + student.getGrade() + "性别" + student.getSex() + "学号"
