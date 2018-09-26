@@ -1,6 +1,7 @@
 package two;
 
 public class Bus extends Moto {
+
 	private int seatCount;
 
 	public Bus(String no, String barnd, int seatCount) {

@@ -28,7 +28,6 @@ public class Test3 {
 				if (chose == 1) {
 					type = "宝马550i";
 				}
-
 			} else {
 				barnd = "别克";
 				System.out.println("请输入轿车型号（1，商务GL8 2，林荫大道）");
@@ -55,7 +54,6 @@ public class Test3 {
 			bus = new Bus(no, barnd, seatCount);
 			money = bus.calcRent(days);
 		}
-
 		System.out.println("租赁金额：" + money);
 	}
 }

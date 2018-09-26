@@ -1,34 +1,47 @@
 package two;
 
-public class Dog {
-		private String name;
-		private int love;
-		private int health;
-		private String strain;
-		public String getName() {
-			return name;
+public class Dog extends Pet {
+	private String strain;
+
+	public String getStrain() {
+		return strain;
+	}
+
+	public void setStrain(String strain) {
+		this.strain = strain;
+	}
+
+	public Dog() {
+
+	}
+
+	public Dog(String name, int health, int love, String strain) {
+		super(name, health, love);
+		this.strain = strain;
+	}
+
+	@Override
+	public String toString() {
+		return "Dog [strain=" + strain + "]" + ",getNmame()" + getName()
+				+ ",getHealth()=" + getHealth() + ",getLove()" + getLove()
+				+ "]";
+	}
+
+	@Override
+	public void print() {
+		System.out.println("Dog [strain=" + strain + "]" + ",getNmame()"
+				+ getName() + ",getHealth()=" + getHealth() + ",getLove()"
+				+ getLove() + "]");
+	}
+
+	@Override
+	public void eat() {
+		if (getHealth() < 70) {
+			setHealth(getHealth() + 10);
+			System.out.println("狗吃食，体力增加：" + getHealth());
+		} else {
+			System.out.println("狗不饿，不需要吃食");
 		}
-		public void setName(String name) {
-			this.name = name;
-		}
-		public int getLove() {
-			return love;
-		}
-		public void setLove(int love) {
-			this.love = love;
-		}
-		public int getHealth() {
-			return health;
-		}
-		public void setHealth(int health) {
-			this.health = health;
-		}
-		public String getStrain() {
-			return strain;
-		}
-		public void setStrain(String strain) {
-			this.strain = strain;
-		}
-		
+	}
 
 }
