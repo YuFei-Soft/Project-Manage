@@ -17,4 +17,14 @@ public class Pig extends Pet {
 		}
 	}
 
+	@Override
+	public void toHospital() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+		
+	
+
 }

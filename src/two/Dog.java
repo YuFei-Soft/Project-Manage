@@ -44,4 +44,14 @@ public class Dog extends Pet {
 		}
 	}
 
+	@Override
+	public void toHospital() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void catchingFlyDisc() {
+      	 System.out.println("¹·¹·Ò§·Éµú");
+	}
+
+
 }

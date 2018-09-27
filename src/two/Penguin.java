@@ -37,4 +37,15 @@ public class Penguin extends Pet {
 		}
 	}
 
+	@Override
+	public void toHospital() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void swimming () {
+      System.out.println("∆Û∂Ï»•”Œ”æ");
+	}
+
+	
+
 }

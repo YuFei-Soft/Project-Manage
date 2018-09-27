@@ -24,6 +24,7 @@ public  abstract class Pet {
 		}
 		public abstract void print();
 		public abstract void eat();
+		public abstract void toHospital();
 		public Pet(){
 			
 		}
