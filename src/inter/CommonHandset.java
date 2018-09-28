@@ -1,6 +1,6 @@
 package inter;
 
-public  class CommonHandset extends Handset implements PlayWiring {
+public class CommonHandset extends Handset implements PlayWiring {
 
 	@Override
 	public void sendInfo() {
@@ -20,10 +20,11 @@ public  class CommonHandset extends Handset implements PlayWiring {
 	@Override
 	public void play() {
 		System.out.println("≤•∑≈“Ù∆µ");
-		
+
 	}
+
 	public static void main(String[] args) {
-		CommonHandset b=new CommonHandset();
+		CommonHandset b = new CommonHandset();
 		b.sendInfo();
 		b.call();
 		b.info();
