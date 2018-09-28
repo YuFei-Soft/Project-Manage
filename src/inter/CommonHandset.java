@@ -1,23 +1,33 @@
 package inter;
 
-public class CommonHandset extends Handset implements PlayWiring {
+public  class CommonHandset extends Handset implements PlayWiring {
 
 	@Override
 	public void sendInfo() {
-		// TODO Auto-generated method stub
-
+		System.out.println("播放视频");
 	}
 
 	@Override
 	public void call() {
-		// TODO Auto-generated method stub
-
+		System.out.println("打电话");
 	}
 
 	@Override
 	public void info() {
-		// TODO Auto-generated method stub
+		System.out.println("发信息");
+	}
 
+	@Override
+	public void play() {
+		System.out.println("播放音频");
+		
+	}
+	public static void main(String[] args) {
+		CommonHandset b=new CommonHandset();
+		b.sendInfo();
+		b.call();
+		b.info();
+		b.play();
 	}
 
 }
