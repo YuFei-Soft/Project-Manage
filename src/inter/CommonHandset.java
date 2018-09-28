@@ -4,7 +4,7 @@ public class CommonHandset extends Handset implements PlayWiring {
 
 	@Override
 	public void sendInfo() {
-		System.out.println("播放视频");
+		System.out.println("发信息");
 	}
 
 	@Override
@@ -14,7 +14,7 @@ public class CommonHandset extends Handset implements PlayWiring {
 
 	@Override
 	public void info() {
-		System.out.println("发信息");
+		System.out.println("信息");
 	}
 
 	@Override
