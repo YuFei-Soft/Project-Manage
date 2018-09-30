@@ -1,10 +1,15 @@
 package Pet2;
 
 public class Dolphin extends Pet implements GetLegNum {
+	private int legNum;
+
+	public void setLegNum(int legNum) {
+		this.legNum = legNum;
+	}
 
 	@Override
 	public int getLegNum() {
-		return 0;
+		return this.legNum;
 	}
 
 	@Override

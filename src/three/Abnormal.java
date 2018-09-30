@@ -13,6 +13,7 @@ public class Abnormal {
 		logger.info("main函数开始执行");
 		logger.error("main函数开始执行");
 		logger.warn("main函数开始执行");
+		logger.fatal("main函数开始执行");
 		Scanner input = new Scanner(System.in);
 		System.out.println("请输入课程代号（1—3之间的数字）");
 		try {
