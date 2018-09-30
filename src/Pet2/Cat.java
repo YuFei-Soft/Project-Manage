@@ -18,6 +18,8 @@ public class Cat extends Pet implements GetLegNum {
 		
 	}
 
+	
+
 	@Override
 	public int getLegNum() {
 		return this.legNum;
