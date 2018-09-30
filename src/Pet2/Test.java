@@ -1,9 +1,5 @@
 package Pet2;
 
-import pet.Cat;
-import pet.Dolphin;
-import pet.Duck;
-import pet.Pet;
 
 public class Test {
 	public static void main(String[] args) {
@@ -13,6 +9,7 @@ public class Test {
 		a[2] = new Dolphin("海豚奇奇\t", 0);
 		System.out.println("动物的名字\t腿的条数\t\t动物叫");
 		for (Pet pet : a) {
+			
 			if (pet instanceof Cat) {
 				Cat cat = (Cat) pet;
 				cat.getLegNum();
@@ -27,13 +24,12 @@ public class Test {
 
 			} else if (pet instanceof Dolphin) {
 				Dolphin dolphin = (Dolphin) pet;
+				dolphin.getLegNum();
 				System.out
 						.println(dolphin.getName() + "\t\t"
 								+ dolphin.getLegNum() + "\t" + "\t"
 								+ dolphin.getShot());
-
 			}
-
 		}
 	}
 }
