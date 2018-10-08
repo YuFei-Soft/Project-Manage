@@ -1,9 +1,9 @@
 package youxi;
 
-public  class Player {
+public class Player {
 	private int levelNo;// 玩家当前级别
 	private int curScore;// 玩家积分
-	private long srartTime;//开始的时间
+	private long srartTime;// 开始的时间
 	private int elapsedTime;// 结束的时间
 
 	public int getLevelNo() {
@@ -37,24 +37,22 @@ public  class Player {
 	public void setElapsedTime(int elapsedTime) {
 		this.elapsedTime = elapsedTime;
 	}
-	
+
 	public Player() {
 		super();
 	}
-	
-	public Player(int levelNo, int curScore) {
+
+	public Player(int levelNo, int curScore,long srartTime,int elapsedTime) {
 		super();
 		this.levelNo = levelNo;
 		this.curScore = curScore;
-	/*	this.srartTime = srartTime;
-		this.elapsedTime = elapsedTime;*/
+		this.srartTime = srartTime;
+		this.elapsedTime = elapsedTime;
 	}
 
-	
-	//玩家玩游戏的方法
-	public void play(){
-		
+	// 玩家玩游戏的方法
+	public void play() {
+
 	}
-		
-	
+
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Test {
 	public static void main(String[] args) {
-		Player a = new Player(1, 2);
+		Player a = new Player(1, 2, 0, 0);
 		Game game = new Game(a);
 		long currentTime1 = System.currentTimeMillis();
 		for (int i = 0; i < 6; i++) {
@@ -18,9 +18,11 @@ public class Test {
 				game.printResult(out, in, currentTime1, currentTime);
 				System.out.println("输入正确，您的积分" + a.getCurScore() + ",您的级别"
 						+ a.getLevelNo() + ",已用时间"
-						+ (a.getElapsedTime() -a.getSrartTime()) / 1000);
+						+ (int) (a.getElapsedTime() - a.getSrartTime()) / 1000
+						+ "秒");
 			}
 			a.setLevelNo(a.getLevelNo() + 1);// 晋级
+			//a.setSrartTime(System.currentTimeMillis());      
 			System.out.println("恭喜晋级为" + a.getLevelNo() + "级！");
 			a.setCurScore(0);
 			if (a.getLevelNo() > 6) {
