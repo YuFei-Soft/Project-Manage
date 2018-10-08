@@ -6,8 +6,8 @@ public class Test {
 	public static void main(String[] args) {
 		Player a = new Player(1, 2, 0, 0);
 		Game game = new Game(a);
-		long currentTime1 = System.currentTimeMillis();
 		for (int i = 0; i < 6; i++) {
+			long currentTime1 = System.currentTimeMillis();
 			for (int j = 0; j < 3; j++) {
 				String out = game.printStr();
 				System.out.print(out);
@@ -22,9 +22,9 @@ public class Test {
 						+ "秒");
 			}
 			a.setLevelNo(a.getLevelNo() + 1);// 晋级
-			//a.setSrartTime(System.currentTimeMillis());      
 			System.out.println("恭喜晋级为" + a.getLevelNo() + "级！");
 			a.setCurScore(0);
+
 			if (a.getLevelNo() > 6) {
 				System.out.println("您已满级通关！");
 				break;

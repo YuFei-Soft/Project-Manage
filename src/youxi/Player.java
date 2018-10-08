@@ -5,6 +5,7 @@ public class Player {
 	private int curScore;// 玩家积分
 	private long srartTime;// 开始的时间
 	private int elapsedTime;// 结束的时间
+	
 
 	public int getLevelNo() {
 		return levelNo;
