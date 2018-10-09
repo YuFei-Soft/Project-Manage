@@ -1,0 +1,86 @@
+2018-09-29 21:33:29main函数开始执行
+  three.Abnormal.main(Abnormal.java:10)
+2018-09-29 21:33:55main函数开始执行
+  three.Abnormal.main(Abnormal.java:10)
+2018-09-29 21:34:00出现异常：{}
+  three.Abnormal.main(Abnormal.java:27)
+java.util.InputMismatchException
+	at java.util.Scanner.throwFor(Unknown Source)
+	at java.util.Scanner.next(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at three.Abnormal.main(Abnormal.java:14)
+2018-09-29 21:37:10main函数开始执行
+  three.Abnormal.main(Abnormal.java:11)
+2018-09-29 21:37:10main函数开始执行
+  three.Abnormal.main(Abnormal.java:12)
+2018-09-29 21:37:10main函数开始执行
+  three.Abnormal.main(Abnormal.java:13)
+2018-09-29 21:37:10main函数开始执行
+  three.Abnormal.main(Abnormal.java:14)
+2018-09-29 21:39:01main函数开始执行
+  three.Abnormal.main(Abnormal.java:11)
+2018-09-29 21:39:01main函数开始执行
+  three.Abnormal.main(Abnormal.java:12)
+2018-09-29 21:39:01main函数开始执行
+  three.Abnormal.main(Abnormal.java:13)
+2018-09-29 21:39:01main函数开始执行
+  three.Abnormal.main(Abnormal.java:14)
+2018-09-29 21:39:05出现异常：{}
+  three.Abnormal.main(Abnormal.java:31)
+java.util.InputMismatchException
+	at java.util.Scanner.throwFor(Unknown Source)
+	at java.util.Scanner.next(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at three.Abnormal.main(Abnormal.java:18)
+2018-09-30 08:06:45main函数开始执行
+  three.Abnormal.main(Abnormal.java:12)
+2018-09-30 08:06:46main函数开始执行
+  three.Abnormal.main(Abnormal.java:13)
+2018-09-30 08:06:46main函数开始执行
+  three.Abnormal.main(Abnormal.java:14)
+2018-09-30 08:06:46main函数开始执行
+  three.Abnormal.main(Abnormal.java:15)
+2018-09-30 08:06:50出现异常：{}
+  three.Abnormal.main(Abnormal.java:32)
+java.util.InputMismatchException
+	at java.util.Scanner.throwFor(Unknown Source)
+	at java.util.Scanner.next(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at three.Abnormal.main(Abnormal.java:19)
+2018-09-30 13:47:12main函数开始执行
+  three.Abnormal.main(Abnormal.java:12)
+2018-09-30 13:47:12main函数开始执行
+  three.Abnormal.main(Abnormal.java:13)
+2018-09-30 13:47:12main函数开始执行
+  three.Abnormal.main(Abnormal.java:14)
+2018-09-30 13:47:12main函数开始执行
+  three.Abnormal.main(Abnormal.java:15)
+2018-09-30 13:47:16出现异常：{}
+  three.Abnormal.main(Abnormal.java:32)
+java.util.InputMismatchException
+	at java.util.Scanner.throwFor(Unknown Source)
+	at java.util.Scanner.next(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at three.Abnormal.main(Abnormal.java:19)
+2018-09-30 13:49:47main函数开始执行
+  three.Abnormal.main(Abnormal.java:12)
+2018-09-30 13:49:47main函数开始执行
+  three.Abnormal.main(Abnormal.java:13)
+2018-09-30 13:49:47main函数开始执行
+  three.Abnormal.main(Abnormal.java:14)
+2018-09-30 13:49:47main函数开始执行
+  three.Abnormal.main(Abnormal.java:15)
+2018-09-30 13:49:47main函数开始执行
+  three.Abnormal.main(Abnormal.java:16)
+2018-09-30 13:49:50出现异常：{}
+  three.Abnormal.main(Abnormal.java:33)
+java.util.InputMismatchException
+	at java.util.Scanner.throwFor(Unknown Source)
+	at java.util.Scanner.next(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at java.util.Scanner.nextInt(Unknown Source)
+	at three.Abnormal.main(Abnormal.java:20)
