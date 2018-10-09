@@ -12,7 +12,7 @@ public class Cat extends Pet implements GetLegNum {
 
 	@Override
 	public String getShot() {
-		return "ίχίχίχ*******";
+		return "ίχίχίχ******";
 	}
 
 	@Override
