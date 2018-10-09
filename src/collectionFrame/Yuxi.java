@@ -1,4 +1,4 @@
-package kuangjia;
+package collectionFrame;
 
 import java.util.ArrayList;
 
