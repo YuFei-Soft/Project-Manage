@@ -1,9 +1,10 @@
 package zuche;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Bus extends Moto {
-	private int seatCount;
+	private int seatCount;// 座位数
 
 	public int getSeatCount() {
 		return seatCount;
@@ -13,8 +14,8 @@ public class Bus extends Moto {
 		this.seatCount = seatCount;
 	}
 
-	public Bus(String no, String brand, int dayMoney, int seatCount) {
-		super(no, brand, dayMoney);
+	public Bus(String numberPlate, int seatCount) {
+		super(numberPlate);
 		this.seatCount = seatCount;
 	}
 
@@ -22,25 +23,35 @@ public class Bus extends Moto {
 		super();
 	}
 
-	public Bus(String no, String brand, int dayMoney) {
-		super(no, brand, dayMoney);
-	}
-
 	@Override
-	public Map calcRent(int days) {
-		double price =this.getDayMoney()*days;
-		int seatCount=1;
-		if(days>=150){
-			price = 0.6;
-		}else if(days>=30){
-			 price=0.7;
-		}else if (days>=7){
-			 price=0.8;
-		}else{
-			 price=0.9;
+	public Map<String, Double> calcRent(int days) {
+		double discount = 1;// 折扣价
+		double price = 0;// 每天的金额
+		if (days >= 150) {
+			discount = 0.6;
+		} else if (days >= 30) {
+			discount = 0.7;
+		} else if (days >= 7) {
+			discount = 0.8;
+		} else if (days >= 3) {
+			discount = 0.9;
 		}
-		
-		return null;
+
+		if (seatCount > 34) {
+			price = 1500;
+		} else {
+			price = 800;
+		}
+		// 计算总金额
+		double totaMoney = price * days;
+		// 计算实际金额
+		double realMoney = totaMoney * discount;
+		Map<String, Double> map = new HashMap<String, Double>();
+		map.put("折扣", discount);
+		map.put("总金额", totaMoney);
+		map.put("实际金额", realMoney);
+
+		return map;
 	}
 
 }

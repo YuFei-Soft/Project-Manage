@@ -3,43 +3,32 @@ package zuche;
 import java.util.Map;
 
 public abstract class Moto {
-	private String No;
-	private String brand;
-	private int dayMoney;
-
-	public String getNo() {
-		return No;
+	private String numberPlate;//车牌号
+	
+	
+   public String getNumberPlate() {
+		return numberPlate;
 	}
 
-	public void setNo(String no) {
-		No = no;
+	public void setNumberPlate(String numberPlate) {
+		this.numberPlate = numberPlate;
 	}
 
-	public String getBrand() {
-		return brand;
-	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
 
-	public int getDayMoney() {
-		return dayMoney;
-	}
 
-	public void setDayMoney(int dayMoney) {
-		this.dayMoney = dayMoney;
-	}
 
-	public Moto(String no, String brand, int dayMoney) {
+public Moto(String numberPlate) {
 		super();
-		No = no;
-		this.brand = brand;
-		this.dayMoney = dayMoney;
+		this.numberPlate = numberPlate;
 	}
 
-	public Moto() {
-		super();
-	}
-   public abstract Map calcRent(int days);
+public Moto() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+//计算租金
+//返回值类型可以设置成void ，直接在方法中打印金额的信息，此处练习Map返回
+
+public abstract Map calcRent(int days);
 }
