@@ -38,7 +38,7 @@ public class Dog {
 	}
 
 	public static void main(String[] args) {
-		LinkedList list=new LinkedList();
+		LinkedList<Dog> list=new LinkedList<Dog>();
 		list.add(new Dog("菲菲","土狗"));
 		list.add(new Dog("欧欧","雪纳瑞"));
 		list.add(new Dog("亚亚","拉布拉多"));

@@ -69,7 +69,7 @@ public class Penguin {
 	}
 
 	public static void main(String[] args) {
-		ArrayList list = new ArrayList();
+		ArrayList<Penguin> list = new ArrayList<Penguin>();
 		list.add(new Penguin("欧欧", "Q仔"));
 		list.add(new Penguin("亚亚", "Q妹"));
 		list.add(new Penguin("菲菲", "Q妹"));
@@ -88,7 +88,7 @@ public class Penguin {
 			System.out.println(list.get(i));
 		}
 		System.out.println();
-		// System.out.println(list.contains(new Penguin("亚亚","Q妹")));
+		 System.out.println(list.contains(new Penguin("亚亚","Q妹")));
 		if (list.contains(new Penguin("美美", "Q妹"))) {
 			System.out.println("集合中包含美美的信息");
 		} else {

@@ -44,7 +44,7 @@ public class NewTitle {
 	public static void main(String[] args) {
 		NewTitle car=new NewTitle(1,"汽车","管理员");
 		NewTitle test=new NewTitle(2,"高考","管理员");
-		ArrayList newTitle=new ArrayList();
+		ArrayList<NewTitle> newTitle=new ArrayList<NewTitle>();
 		newTitle.add(car);
 		newTitle.add(test);
 		System.out.println("新闻标题题目为："+newTitle.size()+"条");
