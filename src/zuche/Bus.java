@@ -29,6 +29,7 @@ public class Bus extends Moto {
 	@Override
 	public Map calcRent(int days) {
 		double price =this.getDayMoney()*days;
+		int seatCount=1;
 		if(days>=150){
 			price = 0.6;
 		}else if(days>=30){
@@ -38,6 +39,7 @@ public class Bus extends Moto {
 		}else{
 			 price=0.9;
 		}
+		
 		return null;
 	}
 
