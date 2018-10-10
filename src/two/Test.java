@@ -29,9 +29,19 @@ public class Test {
 		// int temp =q>w?q:w;
 		// int max2 =temp>e?temp:e;
 
-		int x = 3, y = 4, z;
-		z = (x > y) ? x : y;
-		System.out.println("z=" + z);
+		/*int x = 3, y = 4, z;
+		z = (x > y) ? x : y;*/
+		//String s2=25+"";
+		/*int i=Integer.parseInt("25");
+		String s=Integer.toString(i);*/
+	/*	Integer iObj=new Integer(25);
+		String s=iObj.intValue();*/
+		/*char sex=Character.parseChar("ÄÐ");
+		System.out.println(sex);*/
+		//Byte byteValue=new Byte("21");
+		//Character charValue=Character.valueOf('x');
+		//Integer intValue=Integer.valueOf("21");
+		
 
 	}
 
