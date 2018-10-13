@@ -18,7 +18,6 @@ public class TestInsert {
 		} else {
 			ad = new StringBuffer(num);
 		}
-
 		for (int i = ad.length() - 3; i > 0; i = i - 3) {
 			ad.insert(i, "£¬");
 		}
