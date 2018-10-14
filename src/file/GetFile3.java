@@ -3,12 +3,11 @@ package file;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class GetFile3 {
 	public static void main(String[] args) {
 		try {
-			String str = "好好学习JAVA";
+			String str = "123，456.    好好学习JAVA";
 			byte[] words = str.getBytes();// 字节数组
 			FileOutputStream fos = new FileOutputStream("d:/myClass/test.txt");// 创建流对象，以追加方式写入文件
 			try {
@@ -20,8 +19,7 @@ public class GetFile3 {
 				e.printStackTrace();
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("创建文件时出错");
 		}
 	}
 
