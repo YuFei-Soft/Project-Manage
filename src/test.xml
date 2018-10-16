@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book id="bk101">第一本书
+		<author>王珊</author>
+		<title>.NET高级编程</title>
+		<description>包含C#框架和网络变成等</description>
+	</book>
+	<book id="bk102">
+		<author>小明</author>
+		<title>XML基础编程</title>
+		<description>包含XML基础概念和基本用法</description>	
+	</book>							 	
+</books>
+ 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player>
+	<play name="王显明">
+		<expectedGarde>75</expectedGarde>
+		<actualGarde>80</actualGarde>
+	</play>
+	<play name="宋佳">
+		<expectedGarde>75</expectedGarde>
+		<actualGarde>88</actualGarde>
+	</play>	
+</player>
