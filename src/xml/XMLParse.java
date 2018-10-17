@@ -121,7 +121,7 @@ public class XMLParse {
 			}
 		}
 	}
-	// 保存文档
+	// 保存文档绣花该后的文档内容
 	public void saveXML() {
 		XMLWriter xmlWriter = null;
 		//对XML文件进行格式控制
