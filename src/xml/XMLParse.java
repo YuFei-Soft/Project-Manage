@@ -53,24 +53,41 @@ public class XMLParse {
 	}
 	//新增xml的节点（元素）
 	public void add() {
-		
+		//获得根元素
 		Element element = document.getRootElement();
+		//添加（name）为小米的品牌
 		Element newBardElement = element.addElement("Brad");
+		//设置新的节点为name的属性
 		newBardElement.addAttribute("name", "小米");
+		//newBardElement下面在新加type的元素
 		Element newTypeElement = newBardElement.addElement("Type");
+		//设置type下的新节点为name的属性
 		newTypeElement.addAttribute("name", "小米Note4");
+		//newBardElement下在新加type的属性元素
 		Element newTypeElement2 = newBardElement.addElement("Type");
+		//设置新的节点为name的属性
 		newTypeElement2.addAttribute("name", "小米Note5");
 
 	}
 	// 修改文档
 	public void update() {
+		//把type为Iphone6修改为Iphone10
+		//先要查找到Iphone6的位置，在来修改
+		//获得根元素
 		Element element = document.getRootElement();
+		//获得所有品牌元素的集合
 		List<Element> bards = element.elements("Brand");
-		aa: for (Element barnd : bards) {
+		//设置标识
+		aa:
+		//遍历获得类型	
+		 for (Element barnd : bards) {
+			 //获得品牌下的类型的集合
 			List<Element> type1 = barnd.elements("Type");
+			//遍历类型
 			for (Element types : type1) {
+				//获得类型为name 的属性值
 				String newTypeElement = types.attributeValue("name");
+				//判断Iphone6出现的位置把Iphone10替换为Iphone6
 				if (newTypeElement.equals("Iphone6")) {
 					types.attribute("name").setValue("Iphone10");
 					break aa;
@@ -81,13 +98,22 @@ public class XMLParse {
 
 	}
 	//删除文档
+	//删除Iphone6的类型
+	//要查找到Iphone6的位置做删除处理
 	public void del() {
+		//获得根元素
 		Element element = document.getRootElement();
+		//获得所有品牌元素的集合
 		List<Element> bards = element.elements("Brand");
+		//遍历获得类型
 		for (Element barnd : bards) {
+			//获得品牌下的类型的集合
 			List<Element> type1 = barnd.elements("Type");
+			//遍历获得类型
 			for (Element types : type1) {
+				//获得类型为name的属性值
 				String newTypeElement = types.attributeValue("name");
+				//判断Iphone6出现的位置做删除处理
 				if (newTypeElement.equals("Iphone7")) {
 					types.getParent().remove(types);
 					break;
@@ -98,11 +124,15 @@ public class XMLParse {
 	// 保存文档
 	public void saveXML() {
 		XMLWriter xmlWriter = null;
+		//对XML文件进行格式控制
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		format.setEncoding("GBK");
+		//设置文档声明下面的不需要换行
+		format.setNewLineAfterDeclaration(false);
 		try {
 			FileWriter fw = new FileWriter("src/xml/收藏信息2.xml");
 			xmlWriter = new XMLWriter(fw, format);
+			//写入文件
 			xmlWriter.write(document);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -119,13 +149,19 @@ public class XMLParse {
 	}
 	//测试
 	public static void main(String[] args) {
+		//创建对象
 		XMLParse xml = new XMLParse();
+		//加载XML文档
 		xml.loadXml();
+		//新增文件
 		xml.add();
-		
-		//xml.update();
-	//	xml.del();
-	//	xml.readXml();
+		//修改元素
+		xml.update();
+		//删除元素
+		xml.del();
+		//解析获得XML的内容
+		xml.readXml();
+		//保存修改过的XML文件
 		xml.saveXML();
 	}
 
