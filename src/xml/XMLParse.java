@@ -152,11 +152,11 @@ public class XMLParse {
 		//创建对象
 		XMLParse xml = new XMLParse();
 		//加载XML文档
-		xml.loadXml();
+		//xml.loadXml();
 		//新增文件
-		xml.add();
+		//xml.add();
 		//修改元素
-		xml.update();
+		//xml.update();
 		//删除元素
 		xml.del();
 		//解析获得XML的内容
