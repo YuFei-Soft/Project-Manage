@@ -70,12 +70,72 @@ public class CardUtil {
 			// 标志位重置为false,用于控制外层循环
 			isExist = false;
 			// 生成的随机数是8位的，不能小于10000000，否则重新生成
-
 			temp = rand.nextInt(89999999) + 10000000;
+			number = "139" + temp;
+			// 和现有的卡号进行比较，不能重复
+			Set<String> cardNumbers = cards.keySet();
+			// Object cardNumbers;
+			for (String cardNumber : cardNumbers) {
+				if (number.equals(cardNumber)) {
+					isExist = true;
+					break;
+				}
+
+			}
 
 		} while (isExist);
 		return number;
 
+	}
+
+	// 生成指定个数的新卡列表
+	public String[] getNewNumbers() {
+		String[] numbers = new String[6];
+		for (int i = 0; i < 6; i++) {
+			String newNo = null;
+			do {
+
+				newNo = createNumber();
+			} while (isExists(numbers, newNo));
+			numbers[i] = newNo;
+		}
+		return numbers;
+
+	}
+
+	// 添加号码
+	public void addCardNo(MobileCard card) {
+		cards.put(card.getCardNumber(), card);
+
+	}
+
+	// 检测号码是否在数组中
+	public boolean isExists(String[] nums, String num) {
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != null && nums[i].equals(num)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// 检测号码手否存在
+	public boolean isExists(String cardNo) {
+		return cards.containsKey(cardNo);
+	}
+
+	// 登陆界面
+	public boolean login(String cardNo, String pwd) {
+		MobileCard card = cards.get(cardNo);
+		if (card != null) {
+			if (card.getPassWord().equals(pwd)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 }

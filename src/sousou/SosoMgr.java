@@ -45,13 +45,14 @@ public class SosoMgr {
 				continue;
 			case 6:
 				// 退出
-				System.out.println("退出程序");
+				System.out.println("退出程序,欢迎下次使用！");
 				continue;
 			}
 			break;
 		} while (true);
 	}
-//二级菜单
+
+	// 二级菜单
 	public void secondMenu() {
 		Scanner input = new Scanner(System.in);
 		do {
@@ -83,5 +84,6 @@ public class SosoMgr {
 			break;
 		} while (true);
 	}
+	
 
 }

@@ -39,15 +39,25 @@ public class TalkPackage extends ServicePackage implements CallService,
 	}
 
 	@Override
+	// 入参：minCount数据量（计划打电话的时长），card：使用的电话卡
+	// 返回值：实际的打电话的时长（应该和minCount有关）
+	// 异常：如果套餐的余额不足，抛出异常
 	public int call(int minCount, MobileCard card) throws Exception {
 		// 一分钟一分钟的计算
 		for (int i = 0; i < minCount; i++) {
+			// 判断套餐余量是否足够
 			if (talkTime > card.getRealtalktime()) {
+				// 增加通话的时间
 				card.setRealtalktime(card.getRealtalktime() + 1);
 			} else {
+				// 套餐余量使用完毕
+				// 使用余额
 				if (card.getMoney() > 0.2) {
+					// 增加通话时间
 					card.setRealtalktime(card.getRealtalktime() + 1);
+					// 余额减除
 					card.setMoney(card.getMoney() - 0.2);
+					// 总消费额增加
 					card.setConsumAmount(card.getConsumAmount() + 0.2);
 				} else {
 					// 余额不足
@@ -67,9 +77,31 @@ public class TalkPackage extends ServicePackage implements CallService,
 	}
 
 	@Override
-	public int send(int count, MobileCard card) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int send(int count, MobileCard card) throws Exception {
+		// 短信一条一条的计算
+		for (int i = 0; i < count; i++) {
+			// 判断套餐短信数是否足够
+			if (smsCount > card.getRealSMSCount() + 1) {
+				// 增加短信的使用条数
+				card.setRealSMSCount(card.getRealSMSCount() + 1);
+			} else {
+				// 套餐短信条数使用完毕
+				// 使用余额
+				if (card.getMoney() > 0.1) {
+					// 增加短信使用的条数
+					card.setRealSMSCount(card.getRealSMSCount() + 1);
+					// 余额减除
+					card.setMoney(card.getMoney() - 0.1);
+					// 总消费额增加
+					card.setConsumAmount(card.getConsumAmount() + 0.1);
+				} else {
+					// 余额不足
+					throw new Exception("发送了" + i + "条信息，你的余额不足，请充值！");
+				}
+			}
+		}
+
+		return count;
 	}
 
 }

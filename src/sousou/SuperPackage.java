@@ -78,13 +78,59 @@ public class SuperPackage extends ServicePackage implements CallService,
 	}
 
 	@Override
-	public int netPlay(int flow, MobileCard card) {
-		return 0;
+	public int netPlay(int flow, MobileCard card) throws Exception {
+		// 一MB一MB的计算
+		for (int i = 0; i < flow; i++) {
+			// 判断套餐流量是否足够
+			if (flow > card.getRealFlow()) {
+				// 增加通话的时间
+				card.setRealFlow(card.getRealFlow() + 1);
+			} else {
+				// 套餐流量使用完毕
+				// 使用余额
+				if (card.getMoney() > 0.1) {
+					// 增加流量的使用数
+					card.setRealFlow(card.getRealFlow() + 1);
+					// 余额减除
+					card.setMoney(card.getMoney() - 0.1);
+					// 总消费额增加
+					card.setConsumAmount(card.getConsumAmount() + 0.2);
+				} else {
+					// 余额不足
+					throw new Exception("使用了" + i + "M流量，你的余额不足，请充值！");
+				}
+			}
+		}
+
+		return flow;
 	}
 
 	@Override
-	public int send(int count, MobileCard card) {
-		return 0;
+	public int send(int count, MobileCard card) throws Exception {
+		// 短信一条一条的计算
+		for (int i = 0; i < count; i++) {
+			// 判断套餐短信数是否足够
+			if (smsCount > card.getRealSMSCount() + 1) {
+				// 增加短信的使用条数
+				card.setRealSMSCount(card.getRealSMSCount() + 1);
+			} else {
+				// 套餐短信条数使用完毕
+				// 使用余额
+				if (card.getMoney() > 0.1) {
+					// 增加短信使用的条数
+					card.setRealSMSCount(card.getRealSMSCount() + 1);
+					// 余额减除
+					card.setMoney(card.getMoney() - 0.1);
+					// 总消费额增加
+					card.setConsumAmount(card.getConsumAmount() + 0.1);
+				} else {
+					// 余额不足
+					throw new Exception("发送了" + i + "条信息，你的余额不足，请充值！");
+				}
+			}
+		}
+
+		return count;
 	}
 
 }
