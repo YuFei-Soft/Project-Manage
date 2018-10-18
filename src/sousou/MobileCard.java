@@ -102,7 +102,8 @@ public class MobileCard {
 
 	}
 
-	public void shoeMeg() {
+	// 显示卡的信息
+	public void showMeg() {
 		System.out.println("注册成功！卡号：" + cardNumber + "用户名：" + userName
 				+ "当前余额：" + money + "元");
 	}
