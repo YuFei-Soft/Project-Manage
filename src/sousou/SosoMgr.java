@@ -18,7 +18,7 @@ public class SosoMgr {
 			System.out.print("3。使用嗖嗖");
 			System.out.print("4。话费充值");
 			System.out.print("5。资费说明");
-			System.out.print("6。退出系统");
+			System.out.println("6。退出系统");
 			System.out.print("请选择：");
 			int choice = input.nextInt();
 			switch (choice) {
@@ -46,7 +46,7 @@ public class SosoMgr {
 			case 6:
 				// 退出
 				System.out.println("退出程序,欢迎下次使用！");
-				continue;
+				break;
 			}
 			break;
 		} while (true);
