@@ -44,7 +44,7 @@ public class SuperPackage extends ServicePackage implements CallService,
 		this.talkTime = 200;
 		this.flow = 1024 * 1;
 		this.smsCount = 50;
-		this.price = 50;
+		this.price = 78;
 
 	}
 

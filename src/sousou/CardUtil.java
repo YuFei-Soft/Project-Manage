@@ -23,13 +23,13 @@ public class CardUtil {
 		 * realSMSCount, int realFlow
 		 */
 		MobileCard card1 = new MobileCard("13911111111", "张一", "123",
-				new TalkPackage(), 58, 20, 500, 30, 0);
+				new TalkPackage(), 58, 20);
 		MobileCard card2 = new MobileCard("13922222222", "张二", "123",
-				new NetPackage(), 68, 20, 0, 0, 03 * 1024);
+				new NetPackage(), 68, 20);
 		MobileCard card3 = new MobileCard("13933333333", "张三", "123",
-				new TalkPackage(), 58, 20, 500, 30, 0);
+				new TalkPackage(), 58, 20);
 		MobileCard card4 = new MobileCard("13944444444", "张四", "123",
-				new SuperPackage(), 78, 20, 200, 50, 1024);
+				new SuperPackage(), 78, 20);
 		cards.put("13911111111", card1);
 		cards.put("13922222222", card2);
 		cards.put("13933333333", card3);
@@ -47,7 +47,7 @@ public class CardUtil {
 
 	}
 
-	// 判断手机号是否存在
+	// 判断是否存在此卡用户
 	public boolean isExistCard(String number, String passWord) {
 		Set<String> numbers = cards.keySet();
 		for (String num : numbers) {
@@ -89,9 +89,9 @@ public class CardUtil {
 	}
 
 	// 生成指定个数的新卡列表
-	public String[] getNewNumbers() {
-		String[] numbers = new String[6];
-		for (int i = 0; i < 6; i++) {
+	public String[] getNewNumbers(int count) {
+		String[] numbers = new String[count];
+		for (int i = 0; i < count; i++) {
 			String newNo = null;
 			do {
 
@@ -136,6 +136,38 @@ public class CardUtil {
 		} else {
 			return false;
 		}
+	}
+
+	// 根据套餐的序号返回套餐的对象
+	public ServicePackage createPack(int pavkId) {
+		ServicePackage pack = null;
+		switch (pavkId) {
+		case 1:
+			pack = new TalkPackage();
+			break;
+		case 2:
+			pack = new NetPackage();
+			break;
+		case 3:
+			pack = new SuperPackage();
+			break;
+		}
+		return pack;
+	}
+
+	public void showPack(ServicePackage pack) {
+		if (pack instanceof TalkPackage) {
+			System.out
+					.print("话痨套餐：通话时长为500分钟/月，短信条数为30条/月，上网流量为0MB/月，资费为58元/月");
+			
+		} else if (pack instanceof NetPackage) {
+			System.out
+					.print("网虫套餐：通话时长为0分钟/月，短信条数为0条/月，上网流量为3*1024MB/月，资费为68元/月");
+		} else {
+			System.out
+					.print("超人套餐：通话时长为200分钟/月，短信条数为50条/月，上网流量为1*1024MB/月，资费为78元/月");
+		}
+
 	}
 
 }

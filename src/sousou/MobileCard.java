@@ -84,8 +84,7 @@ public class MobileCard {
 	}
 
 	public MobileCard(String cardNumber, String userName, String passWord,
-			ServicePackage serPackage, double consumAmount, double money,
-			int realtalktime, int realSMSCount, int realFlow) {
+			ServicePackage serPackage, double consumAmount, double money) {
 		super();
 		this.cardNumber = cardNumber;
 		this.userName = userName;
@@ -93,9 +92,7 @@ public class MobileCard {
 		this.serPackage = serPackage;
 		this.consumAmount = consumAmount;
 		this.money = money;
-		this.realtalktime = realtalktime;
-		this.realSMSCount = realSMSCount;
-		this.realFlow = realFlow;
+
 	}
 
 	public MobileCard() {
