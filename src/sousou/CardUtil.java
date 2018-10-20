@@ -46,6 +46,10 @@ public class CardUtil {
 		scenes.add(new Scene("上网", 2 * 1024, "晚上手机在线看韩剧，不留神睡着啦！ 使用流量 2G"));
 
 	}
+	public CardUtil(){
+		initScene();
+		init();	
+	}
 
 	// 判断是否存在此卡用户
 	public boolean isExistCard(String number, String passWord) {
@@ -106,7 +110,6 @@ public class CardUtil {
 	// 添加号码
 	public void addCardNo(MobileCard card) {
 		cards.put(card.getCardNumber(), card);
-
 	}
 
 	// 检测号码是否在数组中
@@ -155,11 +158,12 @@ public class CardUtil {
 		return pack;
 	}
 
+	// 展示每个套餐的 套餐类型
 	public void showPack(ServicePackage pack) {
 		if (pack instanceof TalkPackage) {
 			System.out
 					.print("话痨套餐：通话时长为500分钟/月，短信条数为30条/月，上网流量为0MB/月，资费为58元/月");
-			
+
 		} else if (pack instanceof NetPackage) {
 			System.out
 					.print("网虫套餐：通话时长为0分钟/月，短信条数为0条/月，上网流量为3*1024MB/月，资费为68元/月");
@@ -170,4 +174,116 @@ public class CardUtil {
 
 	}
 
+	public void useSoso(String cardNumber) {
+		// 获得此卡对象
+		MobileCard card = cards.get(cardNumber);
+		// 获得此卡的所属的套餐类型
+		ServicePackage pack = card.getSerPackage();
+		// 产生随机数
+		Random rand = new Random();
+		do {
+			// 获取一个0-5的随机数
+			int randNumber = rand.nextInt(6);
+			// 获取该序号所对应的场景
+			Scene scene = scenes.get(randNumber);
+			int data = 0;
+			switch (randNumber) {
+			case 0:
+			case 1:
+				// 判断该卡是否支持通话功能
+				if (pack instanceof CallService) {
+					CallService callService = (CallService) pack;
+					int realTalkTime = card.getRealtalktime();
+					try {
+						data = callService.call(scene.getData(), card);
+					} catch (Exception e) {
+						e.printStackTrace();
+						int afterTalkTime = card.getRealtalktime();
+						int lastTalkTime = afterTalkTime - realTalkTime;
+						if (lastTalkTime > 0) {
+							ConsumInfo info = new ConsumInfo(cardNumber,
+									scene.getType(), data);
+							addConsumInfo(cardNumber, info);
+						}
+					}
+					// 执行通话功能
+					System.out.println(scene.getDescription());
+					ConsumInfo info = new ConsumInfo(cardNumber,
+							scene.getType(), data);
+					addConsumInfo(cardNumber, info);
+				} else {
+					continue;
+				}
+				break;
+			case 2:
+			case 3:
+				if (pack instanceof SendService) {
+					SendService sendService = (SendService) pack;
+					int realSMSCount = card.getRealSMSCount();
+					try {
+						data = sendService.send(scene.getData(), card);
+					} catch (Exception e) {
+						e.printStackTrace();
+						int afterSMSCount = card.getRealSMSCount();
+						int lastSMSCount = afterSMSCount - realSMSCount;
+						if (lastSMSCount > 0) {
+							ConsumInfo info = new ConsumInfo(cardNumber,
+									scene.getType(), data);
+							addConsumInfo(cardNumber, info);
+						}
+					}
+					// 执行通话功能
+					System.out.println(scene.getDescription());
+					ConsumInfo info = new ConsumInfo(cardNumber,
+							scene.getType(), data);
+					addConsumInfo(cardNumber, info);
+				} else {
+					continue;
+				}
+				break;
+			case 4:
+			case 5:
+				if (pack instanceof NetService) {
+					NetService netService = (NetService) pack;
+					int realFlow = card.getRealFlow();
+					try {
+						data = netService.netPlay(scene.getData(), card);
+					} catch (Exception e) {
+						e.printStackTrace();
+						int afterFlow = card.getRealFlow();
+						int lastFlow = afterFlow - realFlow;
+						if (lastFlow > 0) {
+							ConsumInfo info = new ConsumInfo(cardNumber,
+									scene.getType(), data);
+							addConsumInfo(cardNumber, info);
+						}
+					}
+					// 执行通话功能
+					System.out.println(scene.getDescription());
+					ConsumInfo info = new ConsumInfo(cardNumber,
+							scene.getType(), data);
+					addConsumInfo(cardNumber, info);
+				} else {
+					continue;
+				}
+			}
+			break;
+		} while (true);
+
+	}
+
+	public void addConsumInfo(String cardNumber, ConsumInfo info) {
+		List<ConsumInfo> list = consumInfos.get(cardNumber);
+		if (list == null) {
+			list = new ArrayList<ConsumInfo>();
+			list.add(info);
+			consumInfos.put(cardNumber, list);
+			System.out.println("该卡没有消费记录，添加一条");
+		} else {
+			list.add(info);
+			consumInfos.put(cardNumber, list);
+			System.out.println("已添加一条消费记录");
+		}
+
+	}
 }

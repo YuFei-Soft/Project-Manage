@@ -14,8 +14,7 @@ public class SosoMgr {
 	public void mainMenu() {
 		String mobileNumber = "";
 		String passWord = "";
-		 utils.init();
-		 
+		 utils.init();		 
 		Scanner input = new Scanner(System.in);
 		do {
 			System.out.println("********欢迎使用嗖嗖移动业务大厅**********");
@@ -50,7 +49,10 @@ public class SosoMgr {
 				continue;
 			case 3:
 				// 使用嗖嗖
-				System.out.println("使用嗖嗖");
+				//System.out.println("使用嗖嗖");
+				System.out.print("请输入手机号：");
+				mobileNumber = input.next();
+				utils.useSoso(mobileNumber);
 				continue;
 			case 4:
 				// 话费充值
