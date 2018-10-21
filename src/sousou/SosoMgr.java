@@ -14,7 +14,7 @@ public class SosoMgr {
 	public void mainMenu() {
 		String mobileNumber = "";
 		String passWord = "";
-		 utils.init();		 
+		utils.init();
 		Scanner input = new Scanner(System.in);
 		do {
 			System.out.println("********欢迎使用嗖嗖移动业务大厅**********");
@@ -36,11 +36,11 @@ public class SosoMgr {
 				passWord = input.next();
 				if (utils.isExistCard(mobileNumber, passWord)) {
 					secondMenu(mobileNumber);
-				}else{
+				} else {
 					System.out.println("对不起，您输入的信息有误，无法登陆！");
 				}
 
-				//secondMenu();
+				// secondMenu();
 				continue;
 			case 2:
 				// 用户注册
@@ -49,18 +49,28 @@ public class SosoMgr {
 				continue;
 			case 3:
 				// 使用嗖嗖
-				//System.out.println("使用嗖嗖");
+				// System.out.println("使用嗖嗖");
 				System.out.print("请输入手机号：");
 				mobileNumber = input.next();
 				utils.useSoso(mobileNumber);
 				continue;
 			case 4:
 				// 话费充值
-				System.out.println("话费充值");
+				// System.out.println("话费充值");
+				System.out.print("请输入要充值的号码：");
+				mobileNumber = input.next();
+				if (utils.isExists(mobileNumber))
+					;
+				System.out.print("请输入要充值的金额：");
+				double money = input.nextDouble();
+				utils.chargeMoney(mobileNumber, money);
+
 				continue;
 			case 5:
 				// 资费说明
-				System.out.println("资费说明");
+				System.out.print("资费说明");
+				utils.showDescription();
+				System.out.println("打印完成！");
 				continue;
 			case 6:
 				// 退出
@@ -92,13 +102,20 @@ public class SosoMgr {
 				continue;
 			case 3:
 				System.out.println("3。打印消费详单");
+				utils.printConsumInfos(mobileNumber);
 				continue;
 			case 4:
 				System.out.println("4。套餐变更");
+				System.out.print("1.话痨套餐 2.网虫套餐 3.超人套餐     请选择（序号）：");
+				utils.changePack(mobileNumber, input.next());
 				continue;
 			case 5:
 				System.out.println("5。办理退网");
-				continue;
+				utils.delCard(mobileNumber);
+				System.out.println("谢谢使用");
+				//办理退网后推出系统
+				System.exit(1);
+				//continue;
 			}
 			break;
 		} while (true);

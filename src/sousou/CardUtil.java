@@ -1,10 +1,16 @@
 package sousou;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 public class CardUtil {
@@ -46,9 +52,10 @@ public class CardUtil {
 		scenes.add(new Scene("上网", 2 * 1024, "晚上手机在线看韩剧，不留神睡着啦！ 使用流量 2G"));
 
 	}
-	public CardUtil(){
+
+	public CardUtil() {
 		initScene();
-		init();	
+		init();
 	}
 
 	// 判断是否存在此卡用户
@@ -62,6 +69,8 @@ public class CardUtil {
 		}
 		return false;
 	}
+
+	// 判断卡号是否注册
 
 	// 随机生成号码
 	public String createNumber() {
@@ -174,14 +183,33 @@ public class CardUtil {
 
 	}
 
+	// 办理退网
+	public void delCard(String delCard) {
+		if (isExists(delCard)) {
+			cards.remove(delCard);
+			System.out.println("卡号：" + delCard + "办理退网成功！");
+		} else {
+			System.out.println("对不起，该卡未注册，不能办理退网！");
+		}
+
+	}
+
+	// 显示账单信息
+	// 使用嗖嗖
+
 	public void useSoso(String cardNumber) {
 		// 获得此卡对象
 		MobileCard card = cards.get(cardNumber);
+		if (card == null) {
+			System.out.println("此号码不存在");
+			return;
+		}
 		// 获得此卡的所属的套餐类型
 		ServicePackage pack = card.getSerPackage();
-		// 产生随机数
-		Random rand = new Random();
+
 		do {
+			// 产生随机数
+			Random rand = new Random();
 			// 获取一个0-5的随机数
 			int randNumber = rand.nextInt(6);
 			// 获取该序号所对应的场景
@@ -190,79 +218,144 @@ public class CardUtil {
 			switch (randNumber) {
 			case 0:
 			case 1:
-				// 判断该卡是否支持通话功能
+				// 打电话
+				// 判断该卡的套餐是否可以打电话
+				// 判断该卡的套餐是否实现打电话的接口
 				if (pack instanceof CallService) {
 					CallService callService = (CallService) pack;
+					// 调用打电话的接口方法
+					// 显示场景信息
+					System.out.println(scene.getDescription());
+					// 消费之前，获得实际通话的时间
+					// 消费发生异常的时候，用来结算发生异常前该次通话的实际
 					int realTalkTime = card.getRealtalktime();
 					try {
 						data = callService.call(scene.getData(), card);
+						// 场景消费完毕没有异常
+						// 创建消费记录
+						ConsumInfo info = new ConsumInfo(cardNumber,
+								scene.getType(), data);
+						// 添加到消费记录
+						addConsumInfo(cardNumber, info);
 					} catch (Exception e) {
 						e.printStackTrace();
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e1) {
+							e.printStackTrace();
+						}
+						// 获得当前的实际通话
 						int afterTalkTime = card.getRealtalktime();
+						// 获得差值（最后一次通话）
 						int lastTalkTime = afterTalkTime - realTalkTime;
+						// 如果最后一次进行了通话，添加消费记录
 						if (lastTalkTime > 0) {
+							// 创建消费记录
 							ConsumInfo info = new ConsumInfo(cardNumber,
-									scene.getType(), data);
+									scene.getType(), lastTalkTime);
+							// 添加到消费记录列表
 							addConsumInfo(cardNumber, info);
 						}
 					}
-					// 执行通话功能
-					System.out.println(scene.getDescription());
-					ConsumInfo info = new ConsumInfo(cardNumber,
-							scene.getType(), data);
-					addConsumInfo(cardNumber, info);
+					break;
+					/*
+					 * // 执行通话功能 System.out.println(scene.getDescription());
+					 * ConsumInfo info = new ConsumInfo(cardNumber,
+					 * scene.getType(), data); addConsumInfo(cardNumber, info);
+					 */
 				} else {
+					// 不具有打电话的功能
 					continue;
 				}
-				break;
+
 			case 2:
 			case 3:
+				// 发消息
+				// 判断该卡的套餐是否可以发消息
+				// 判断该卡的套餐是否实现发消息的接口
 				if (pack instanceof SendService) {
 					SendService sendService = (SendService) pack;
+					// 调用发消息的接口方法
+					// 显示场景信息
+					System.out.println(scene.getDescription());
+					// 消费之前，获得实际的发消息的条数
+					// 消费发生异常的时候，用来结算发生异常前该次发消息的次数
 					int realSMSCount = card.getRealSMSCount();
 					try {
 						data = sendService.send(scene.getData(), card);
+						// 场景消费完毕没有异常
+						// 创建消费记录
+						ConsumInfo info = new ConsumInfo(cardNumber,
+								scene.getType(), data);
+						// 添加到消费记录
+						addConsumInfo(cardNumber, info);
 					} catch (Exception e) {
 						e.printStackTrace();
-						int afterSMSCount = card.getRealSMSCount();
-						int lastSMSCount = afterSMSCount - realSMSCount;
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e1) {
+							e.printStackTrace();
+						}
+						// 获得当前的信息条数
+						int afterRealSMSCount = card.getRealSMSCount();
+						// 获得差值（最后一次发了几条信息）
+						int lastSMSCount = afterRealSMSCount - realSMSCount;
+						// 如果最后一次进行了发信息，添加消费记录
 						if (lastSMSCount > 0) {
+							// 创建消费记录
 							ConsumInfo info = new ConsumInfo(cardNumber,
-									scene.getType(), data);
+									scene.getType(), lastSMSCount);
+							// 添加到消费记录列表
 							addConsumInfo(cardNumber, info);
 						}
 					}
-					// 执行通话功能
-					System.out.println(scene.getDescription());
-					ConsumInfo info = new ConsumInfo(cardNumber,
-							scene.getType(), data);
-					addConsumInfo(cardNumber, info);
+					break;
 				} else {
+					// 不具有发消息的功能
 					continue;
 				}
-				break;
+
 			case 4:
 			case 5:
+				// 上网
+				// 判断该卡的套餐是否可以上网
+				// 判断该卡的套餐是否实现上网的接口
 				if (pack instanceof NetService) {
 					NetService netService = (NetService) pack;
+					// 调用上网的接口方法
+					// 显示 场景
+					System.out.println(scene.getData());
+					// 消费之前，获得实际的上网的
+					// 消费发生异常的时候，用来结算发生异常前该次上网的流量
 					int realFlow = card.getRealFlow();
 					try {
 						data = netService.netPlay(scene.getData(), card);
+						// 场景消费完毕没有发生异常
+						// 创建消费记录
+						ConsumInfo info = new ConsumInfo(cardNumber,
+								scene.getType(), data);
+						addConsumInfo(cardNumber, info);
+
 					} catch (Exception e) {
 						e.printStackTrace();
-						int afterFlow = card.getRealFlow();
-						int lastFlow = afterFlow - realFlow;
-						if (lastFlow > 0) {
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e1) {
+							e.printStackTrace();
+						}
+						// 获得当前的流量
+						int afterRealFlow = card.getRealFlow();
+						// 获得插值（最后一次使用流量）
+						int lastRealFlow = afterRealFlow - realFlow;
+						// 如果最后一次进行了上网，添加消费记录
+						if (lastRealFlow > 0) {
+							// 创建消费记录
 							ConsumInfo info = new ConsumInfo(cardNumber,
-									scene.getType(), data);
+									scene.getType(), lastRealFlow);
 							addConsumInfo(cardNumber, info);
 						}
 					}
-					// 执行通话功能
-					System.out.println(scene.getDescription());
-					ConsumInfo info = new ConsumInfo(cardNumber,
-							scene.getType(), data);
-					addConsumInfo(cardNumber, info);
+					break;
 				} else {
 					continue;
 				}
@@ -272,18 +365,169 @@ public class CardUtil {
 
 	}
 
+	// 添加消费记录
 	public void addConsumInfo(String cardNumber, ConsumInfo info) {
+		// 首先会哦的该卡的消费记录集合
 		List<ConsumInfo> list = consumInfos.get(cardNumber);
+		// 判断list石佛营为空
 		if (list == null) {
+			// 该卡没有进行过消费
+			// 添加第一条消费记录
 			list = new ArrayList<ConsumInfo>();
+			// 添加
 			list.add(info);
 			consumInfos.put(cardNumber, list);
+
 			System.out.println("该卡没有消费记录，添加一条");
 		} else {
+			// 原来就有消费记录
+			// 直接添加到list
 			list.add(info);
-			consumInfos.put(cardNumber, list);
+			// consumInfos.put(cardNumber, list);
 			System.out.println("已添加一条消费记录");
 		}
 
 	}
+
+	// 显示资费信息
+
+	// 改套餐
+	public void changePack(String cardNumber, String pacckNum) {
+		MobileCard card;// 指定手机卡
+		ServicePackage pack;// 更换套餐
+		if (isExists(cardNumber)) {
+			card = cards.get(cardNumber);
+			// 获取要更换的套餐对象
+			switch (pacckNum) {
+			case "1":
+				pack = new TalkPackage();
+				break;
+			case "2":
+				pack = new NetPackage();
+				break;
+			default:
+				pack = new SuperPackage();
+				break;
+			}
+			if (!(card.getSerPackage().getClass().getName().equals(pack
+					.getClass().getName()))) {
+				// 该卡余额中减去当月套餐资费
+				if (card.getMoney() >= pack.getPrice()) {
+					card.setMoney(card.getMoney() - pack.getPrice());
+					// 换套餐
+					card.setSerPackage(pack);
+					// 当月实际使用数据清零
+					card.setRealtalktime(0);
+					card.setRealFlow(0);
+					card.setRealSMSCount(0);
+					// 当月消费金额设置为新套餐月资费
+					card.setConsumAmount(pack.getPrice());
+					System.out.println("更换套餐成功！");
+					pack.showInfo();
+				} else {
+					System.out.println("对不起，您的余额不足支付新的套餐本月资费，请充值后在办理更换业务！");
+					return;
+				}
+			} else {
+				System.out.println("对不起，您已经是该套餐用户，无需更改！");
+			}
+		} else {
+			System.out.println("对不起，该卡未注册，不能更换！");
+
+		}
+
+	}
+
+	// 打印消费记录
+	public void printConsumInfos(String cardNumber) {
+		// 判断号码是否存在
+		if (!isExists(cardNumber)) {
+			System.out.println("此号码不存在");
+		} else {
+			// 获得该号码的消费记录集合
+			List<ConsumInfo> list = consumInfos.get(cardNumber);
+			// 判断是否有消费记录
+			if (list == null) {
+				System.out.println("此卡还没有消费记录");
+			} else {
+				// 输出到文件
+				FileWriter fw = null;
+				try {
+					fw = new FileWriter(
+							"E:/eclipse/workspace/Project-Manage/src/sousou/"
+									+ cardNumber + ".txt");
+					fw.write("********" + cardNumber + "消费记录********\r\n");
+					fw.write("序号\t类型\t数据\t（通话（分钟））/短信（条）/上网（MB）\r\n");
+					// 循环写入消费记录
+					for (int i = 0; i < list.size(); i++) {
+						ConsumInfo consumInfo = list.get(i);
+						fw.write(i + 1 + "\t" + consumInfo.getType() + "\t"
+								+ consumInfo.getConsumData() + "\r\n");
+					}
+					System.out.println("消费记录打印完成");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					if (fw != null) {
+						try {
+							fw.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	// 为指定 的手机卡充值
+	public void chargeMoney(String cardNumber, double money) {
+		MobileCard card;// 指定手机卡
+		boolean falg = false;
+		Scanner input = new Scanner(System.in);
+		if (money < 50) {
+			System.out.println("对不起，最低充值金额为50元！");
+			return;
+
+		} else {
+			card = cards.get(cardNumber);
+			// double oldmoney=card.getMoney();
+			card.setMoney(card.getMoney() + money);
+			System.out.println("充值成功！当前余额为" + card.getMoney());
+		}
+
+	}
+
+	// 套餐资费说明
+	public void showDescription() {
+		FileReader rb = null;
+		try {
+			rb = new FileReader("d:\\myClass\\资费说明.txt");
+			char[] content = new char[1024];
+			int leng = 0;
+			StringBuffer sb = new StringBuffer();
+			while ((leng = rb.read(content)) != -1) {
+				sb.append(content, 0, leng);
+			}
+			System.out.println(sb);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				rb.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 }
