@@ -4,13 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
 
 public class CardUtil {
@@ -69,8 +67,6 @@ public class CardUtil {
 		}
 		return false;
 	}
-
-	// 判断卡号是否注册
 
 	// 随机生成号码
 	public String createNumber() {
@@ -196,7 +192,6 @@ public class CardUtil {
 
 	// 显示账单信息
 	// 使用嗖嗖
-
 	public void useSoso(String cardNumber) {
 		// 获得此卡对象
 		MobileCard card = cards.get(cardNumber);
@@ -389,8 +384,6 @@ public class CardUtil {
 
 	}
 
-	// 显示资费信息
-
 	// 改套餐
 	public void changePack(String cardNumber, String pacckNum) {
 		MobileCard card;// 指定手机卡
@@ -453,9 +446,8 @@ public class CardUtil {
 				// 输出到文件
 				FileWriter fw = null;
 				try {
-					fw = new FileWriter(
-							"E:/eclipse/workspace/Project-Manage/src/sousou/"
-									+ cardNumber + ".txt");
+					fw = new FileWriter("F:/Dpf/Project-Manage-new/src/sousou/"
+							+ cardNumber + ".txt");
 					fw.write("********" + cardNumber + "消费记录********\r\n");
 					fw.write("序号\t类型\t数据\t（通话（分钟））/短信（条）/上网（MB）\r\n");
 					// 循环写入消费记录
@@ -486,8 +478,7 @@ public class CardUtil {
 	// 为指定 的手机卡充值
 	public void chargeMoney(String cardNumber, double money) {
 		MobileCard card;// 指定手机卡
-		boolean falg = false;
-		Scanner input = new Scanner(System.in);
+
 		if (money < 50) {
 			System.out.println("对不起，最低充值金额为50元！");
 			return;
@@ -527,7 +518,65 @@ public class CardUtil {
 				e.printStackTrace();
 			}
 		}
-
+	}
+	// 打印本月账单查询
+	public void showAmountDetail(String searchNumber) {
+		MobileCard card;// 要查询的卡
+		StringBuffer meg = new StringBuffer();
+		card = cards.get(searchNumber);// 获取集合中的一个元素
+		meg.append("您的卡号：" + card.getCardNumber() + "，当月账单：\n");
+		meg.append("套餐资费：" + card.getSerPackage().getPrice() + "元\n");
+		meg.append("合计：" + card.getConsumAmount() + "元\n");
+		meg.append("账户余额：" + card.getMoney() + "元");
+		// 显示本月的消费详细信息
+		System.out.println(meg);
 	}
 
+	// 套餐余量查询
+	public void showRemainDetail(String searchNumber) {
+		MobileCard card;// 要查询的卡
+		int remainTalkTime;
+		int remainSmsCount;
+		int remainFlow;
+		StringBuffer meg = new StringBuffer();
+		card = cards.get(searchNumber);
+		meg.append("您的卡号是：" + searchNumber + "，套餐内剩余：\n");
+		ServicePackage pack = card.getSerPackage();
+		if (pack instanceof TalkPackage) {
+			// 向下转型为话痨套餐对象
+			TalkPackage cardPack = (TalkPackage) pack;
+			// 话痨套餐，查询套餐内剩余的通话时长和短信条数
+			remainTalkTime = cardPack.getTalkTime() > card.getRealtalktime() ? cardPack
+					.getTalkTime() - card.getRealtalktime()
+					: 0;
+			meg.append("通话时长：" + remainTalkTime + "分钟\n");
+			remainSmsCount = cardPack.getSmsCount() > card.getRealSMSCount() ? cardPack
+					.getSmsCount() - card.getRealSMSCount()
+					: 0;
+			meg.append("短信条数：" + remainSmsCount + "条");
+		} else if (pack instanceof NetPackage) { 
+			// 向下转型为网虫套餐对象
+			NetPackage cardPack = (NetPackage) pack;
+			// 网虫套餐，查询套餐内剩余的流量数
+			remainFlow = cardPack.getFlow() > card.getRealFlow() ? cardPack
+					.getFlow() - card.getRealFlow() : 0;
+			meg.append("上网流量：" + remainFlow + "MB");
+		} else if (pack instanceof SuperPackage){
+			// 向下转型为超人套餐对象
+			SuperPackage cardPack = (SuperPackage) pack;
+			// 超人套餐：查询套餐内剩余的通话时长、短信条数、上网流量
+			remainTalkTime = cardPack.getTalkTime() > card.getRealtalktime() ? cardPack
+					.getTalkTime() - card.getRealtalktime()
+					: 0;
+			meg.append("通话时长：" + remainTalkTime + "分钟\n");
+			remainSmsCount = cardPack.getSmsCount() > card.getRealSMSCount() ? cardPack
+					.getSmsCount() - card.getRealSMSCount()
+					: 0;
+			meg.append("短信条数：" + remainSmsCount + "条");
+			remainFlow = cardPack.getFlow() > card.getRealFlow() ? cardPack
+					.getFlow() - card.getRealFlow() : 0;
+			meg.append("上网流量：" + remainFlow + "MB");
+		}
+		System.out.println(meg);
+	}
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 配置一系列的java对象 -->
+<Object>
+<object key="U1" type="fanshe.User">
+<property name="id"  value="1"></property>
+<property name="name" value="李四"> </property>
+<property name="age"  value="22"></property>
+</object>
+<object key="U2" type="fanshe.User">
+<property name="id"  value="2"></property>
+<property name="name" value="张三"> </property>
+<property name="age"  value="23"></property>
+</object>
+<object key="U3" type="fanshe.User">
+<property name="id"  value="3"></property>
+<property name="name" value="王五"></property>
+</object>
+</Object>

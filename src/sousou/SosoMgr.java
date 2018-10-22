@@ -60,11 +60,9 @@ public class SosoMgr {
 				System.out.print("请输入要充值的号码：");
 				mobileNumber = input.next();
 				if (utils.isExists(mobileNumber))
-					;
-				System.out.print("请输入要充值的金额：");
+					System.out.print("请输入要充值的金额：");
 				double money = input.nextDouble();
 				utils.chargeMoney(mobileNumber, money);
-
 				continue;
 			case 5:
 				// 资费说明
@@ -75,6 +73,8 @@ public class SosoMgr {
 			case 6:
 				// 退出
 				System.out.println("退出程序,欢迎下次使用！");
+				break;
+			default:
 				break;
 			}
 			break;
@@ -96,9 +96,11 @@ public class SosoMgr {
 			switch (choice) {
 			case 1:
 				System.out.println("1。本月账单查询");
+				utils.showAmountDetail(mobileNumber);
 				continue;
 			case 2:
 				System.out.println("2。套餐余量查询");
+				utils.showRemainDetail(mobileNumber);
 				continue;
 			case 3:
 				System.out.println("3。打印消费详单");
@@ -113,9 +115,9 @@ public class SosoMgr {
 				System.out.println("5。办理退网");
 				utils.delCard(mobileNumber);
 				System.out.println("谢谢使用");
-				//办理退网后推出系统
+				// 办理退网后推出系统
 				System.exit(1);
-				//continue;
+				// continue;
 			}
 			break;
 		} while (true);
